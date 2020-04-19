@@ -26,7 +26,6 @@ export const FormTodo = styled.View`
 `
 
 export const SendView = styled.View`
-    flex: 1;
     align-items: flex-end;
 `
 export const SendButton = styled.TouchableOpacity``
