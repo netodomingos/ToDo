@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Link, useHistory } from 'react-router-dom'
 
@@ -20,6 +20,18 @@ export default function Login() {
 
     const history = useHistory()
 
+    useEffect(() => {
+        isLoggedUser()
+    })
+
+    const isLoggedUser = () => {
+        const token = localStorage.getItem('token')
+
+        if( token !== null ){
+            return history.push('/main/' + token)
+        }
+    }
+
     const handleLogin = async (e) => {
         e.preventDefault()
 
@@ -33,7 +45,7 @@ export default function Login() {
 
             history.push('/main/' + response.data.user)
 
-            localStorage.setItem('loggedUser'. response.data.user)
+            localStorage.setItem('token', response.data.user)
 
             setEmail('')
             setPassword('')
