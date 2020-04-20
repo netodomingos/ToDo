@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-
 import { RectButton } from 'react-native-gesture-handler'
 
 export const Container = styled.View`
@@ -76,5 +75,21 @@ export const Button = styled(RectButton)`
 `
 export const ButtonText = styled.Text`
     text-align: center;
+    color: #FFF;
+`
+
+export const Goback = styled.TouchableOpacity`
+    position: absolute;
+    top: 40px;
+    left: 20px;
+`
+
+export const ImagePickerButton = styled.TouchableOpacity`
+    background-color: #138A72;
+    padding: 10px;
+    border-radius: 5px;
+`
+
+export const ImagePickerText = styled.Text`
     color: #FFF;
 `

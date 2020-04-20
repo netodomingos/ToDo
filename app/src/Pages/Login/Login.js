@@ -8,7 +8,7 @@ import { AppLoading } from 'expo'
 
 import { useNavigation } from '@react-navigation/native'
 
-import { ActivityIndicator } from 'react-native'
+import { ActivityIndicator, AsyncStorage } from 'react-native'
 
 import { 
   Container,
@@ -38,13 +38,14 @@ export default function Login() {
   const handleLogin = async () => {
     setLoading(true)
 
-    if(email == '' || password == ''){
-      Alert.alert('Campos não preenchidos, tente novamente!')
-      
-      setLoading(false)
-    }
-
     try{
+      
+      if(email == '' || password == ''){
+        Alert.alert('Campos não preenchidos, tente novamente!')
+        
+        setLoading(false)
+      }
+
 
       const data = {
         email,
@@ -57,9 +58,9 @@ export default function Login() {
       setEmail('')
       setPassword('')
 
-      navigation.navigate('main', {
-        token: response.data.user
-      })
+      await AsyncStorage.setItem('token', response.data.user )
+
+      navigation.navigate('main')
 
     }catch(err){
       Alert.alert(err)
